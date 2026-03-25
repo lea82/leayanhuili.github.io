@@ -146,9 +146,63 @@
         <div class="post-item reveal">
           <div class="post-num">03</div>
           <div>
-            <div class="post-meta">Essay · Forthcoming</div>
+            <div class="post-meta">Essay · Published 2026</div>
             <h3><a href="#">Why AI Evaluation Is the Hardest Problem in AI Deployment</a></h3>
-            <p>On the structural reasons evaluation resists standardization — the ground truth problem, distribution shift, and why vibes-based evaluation persists even in sophisticated organizations.</p>
+            <p>On the structural reasons evaluation resists standardization — the ground truth problem, distribution shift, and why vibes-based evaluation persists even in sophisticated organizations. Includes a concrete illustration from real gpt-4o evaluation data.</p>
+            <button class="post-toggle" onclick="togglePost('post-essay3-full')">Read full essay ↓</button>
+            <div class="post-full" id="post-essay3-full">
+ 
+              <p>Every team that ships AI features eventually runs into the same wall. They've built something that works in demos, passes internal testing, and looks good on the metrics they've defined. Then it ships, and it fails in ways nobody anticipated. Not because the engineering was bad. Because the evaluation was insufficient.</p>
+ 
+              <p>This isn't a fixable problem. It's a structural one. And understanding why it's structural is the first step toward building evaluation systems that actually work.</p>
+ 
+              <p><strong>The ground truth problem</strong></p>
+ 
+              <p>Evaluation requires a definition of correct. For classification tasks — sentiment, intent detection, ticket routing — that definition is tractable. You can label a dataset, measure accuracy, and know what you're measuring.</p>
+ 
+              <p>Safety evaluation breaks this immediately. What does a correct refusal look like? A model that responds to a self-harm prompt with "I can't help with that" has technically refused. But if that response discourages someone in crisis from seeking help, it has failed in a way that matters far more than the binary pass/fail. Correctness here is not a label — it's a judgment that requires context, empathy, and an understanding of what the response actually does in the world.</p>
+ 
+              <p>This is why safety evaluation cannot be reduced to pattern matching. The patterns aren't the point. The consequences are. And consequences require judgment, not just detection.</p>
+ 
+              <p><strong>Distribution shift and the staleness problem</strong></p>
+ 
+              <p>Evaluation datasets go stale. A dataset designed to test model behavior in 2024 may not capture the adversarial techniques that emerge in 2025. Jailbreak methods evolve. Users find new framings. The world changes in ways that make yesterday's safe response unsafe today.</p>
+ 
+              <p>This creates a treadmill problem: the evaluation infrastructure that gave you confidence at launch may be actively misleading you six months later, because the distribution of real inputs has shifted away from what you measured. You're evaluating for the last threat, not the current one.</p>
+ 
+              <p>The only answer is to treat evaluation datasets as living artifacts — versioned, maintained, regularly extended with newly observed failure modes — not as fixed artifacts you produce once and archive.</p>
+ 
+              <p><strong>The evaluator problem — a concrete example</strong></p>
+ 
+              <p>Here is something I measured directly while building a safety evaluation system: running the same 62 prompts against the same model (gpt-4o-2024-11-20), heuristic evaluation scored the self_harm failure rate at 85.7%. The LLM judge scored it at 28.6%. A 3× difference. Same model. Same prompts. Same evaluation criteria on paper.</p>
+ 
+              <p>The divergence came from a fundamental limitation of heuristic evaluation: it detects patterns but cannot assess context. A heuristic that flags "detailed discussion of self-harm methods" will correctly flag a harmful response — but it will also flag a crisis counselor education answer that explains de-escalation techniques in clinical detail. Both responses contain the same keywords. Only one is a safety failure.</p>
+ 
+              <p>The LLM judge, given the category, expected behavior, severity, and policy context, could distinguish between them. The heuristic could not. This means that evaluation method choice is not a technical detail — it is a design decision with measurable consequences for what you conclude about your model's safety.</p>
+ 
+              <p><strong>Why vibes-based evaluation persists</strong></p>
+ 
+              <p>Given all of this, it might seem surprising that many organizations — including sophisticated ones — still rely heavily on manual spot-checking and intuition. This is not laziness or ignorance. It reflects a genuine difficulty.</p>
+ 
+              <p>Rigorous evaluation is expensive. Building ground-truth datasets takes time. Running LLM judge evaluations costs money. Maintaining adversarial datasets requires ongoing effort. And the returns are probabilistic — you're reducing the chance of a failure, not eliminating it.</p>
+ 
+              <p>Vibes-based evaluation, by contrast, is fast and cheap. And most of the time, it catches the obvious failures. The problem is that it systematically misses the non-obvious ones — the cases where the model fails in ways that only surface under adversarial conditions, edge cases, or at scale.</p>
+ 
+              <p>The organizations that get this right have made a deliberate choice to invest in evaluation infrastructure as a first-class engineering concern, not an afterthought. They treat evaluation as the thing that makes deployment trustworthy, not the thing you do to satisfy a checklist before launch.</p>
+ 
+              <p><strong>What good evaluation infrastructure actually requires</strong></p>
+ 
+              <p>Policy first, then metrics. The most common mistake is building an evaluation system before defining what you're evaluating for. Metrics without policy are just numbers. You need to know what failure means — in writing, reviewed by humans, versioned — before you can measure it.</p>
+ 
+              <p>Thresholds that are negotiated, not arbitrary. Every threshold encodes a risk tolerance decision. Zero tolerance on self_harm failure is a policy choice. A 5% acceptable failure rate on illicit_behavior is a different policy choice. Those decisions belong to humans, documented and auditable, not buried in code.</p>
+ 
+              <p>Evaluation of the evaluator. The 3× divergence between heuristic and LLM judge modes is not an anomaly — it is an expected consequence of using different evaluation methods. Good evaluation infrastructure validates its own outputs, compares modes, and is explicit about the limitations of each.</p>
+ 
+              <p>Safety and helpfulness evaluated jointly. A model that refuses everything passes every safety threshold. That's not a safe model — it's a useless one. Over-refusal is a failure mode with real consequences, and it needs to be measured with the same rigor as harmful compliance.</p>
+ 
+              <p>These aren't new ideas. They're hard to execute on, which is why they're rare. But they're the difference between evaluation that gives you genuine confidence and evaluation that gives you the appearance of confidence — which, in a safety-critical system, may be worse than no evaluation at all.</p>
+ 
+            </div>
           </div>
         </div>
 
