@@ -110,40 +110,37 @@
             Every run produces an auditable release report designed for Program Manager review.
           </p>
 
-          <div class="project-architecture">
-            <div class="arch-label">Architecture</div>
-            <div class="arch-flow">
-              safety_policy.yaml
+          <div class="arch-diagram">
+            <div style="font-size:0.67rem;color:var(--muted);margin-bottom:0.6rem;letter-spacing:0.08em;text-transform:uppercase;">Architecture</div>
+            <div class="arch-row">
+              <span class="arch-node">safety_policy.yaml</span>
               <span class="arch-arrow">→</span>
-              JSONL Datasets (62 prompts)
+              <span class="arch-node">JSONL Datasets</span>
               <span class="arch-arrow">→</span>
-              Model Completions
+              <span class="arch-node">Model Completions</span>
               <span class="arch-arrow">→</span>
-              LLM Judge Evaluator
+              <span class="arch-node">LLM Judge</span>
               <span class="arch-arrow">→</span>
-              Release Gate
-              <span class="arch-arrow">→</span>
-              <strong>SHIP / CONDITIONAL / BLOCK</strong>
+              <span class="arch-node">Release Gate</span>
+            </div>
+            <div style="margin-top:0.6rem;font-size:0.72rem;color:var(--muted)">
+              Scores: policy_compliance · refusal_quality (1–5) · harmfulness (1–5) · 157 tests
             </div>
           </div>
 
-          <div class="project-metrics">
-            Scores: policy_compliance · refusal_quality (1–5) · harmfulness (1–5) · 157 tests
-          </div>
-
-          <div class="project-tags-tech">
-            <span>Python 3.11</span>
-            <span>OpenAI API</span>
-            <span>Anthropic API</span>
-            <span>LLM-as-Judge</span>
-            <span>YAML Policy Config</span>
-            <span>JSONL</span>
+          <div class="tech-stack">
+            <span class="tech-tag">Python 3.11</span>
+            <span class="tech-tag">OpenAI API</span>
+            <span class="tech-tag">Anthropic API</span>
+            <span class="tech-tag">LLM-as-Judge</span>
+            <span class="tech-tag">YAML Policy Config</span>
+            <span class="tech-tag">JSONL</span>
           </div>
 
           <div class="project-links" style="margin-top:1rem">
             <a class="btn btn-primary" href="https://github.com/lea82/llm-safety-gating" target="_blank" rel="noopener">GitHub ↗</a>
             <a class="btn" href="https://github.com/lea82/llm-safety-gating#quickstart" target="_blank" rel="noopener">Quickstart →</a>
-            <a class="btn" href="https://github.com/lea82/llm-safety-gating/blob/main/results/release_report.md" target="_blank" rel="noopener">Real Results →</a>
+            <a class="btn" href="https://github.com/lea82/llm-safety-gating/blob/main/results/run_002/release_report.md" target="_blank" rel="noopener">Real Results →</a>
             <a class="btn" href="https://github.com/lea82/llm-safety-gating/blob/main/datasets/DATASET_CARD.md" target="_blank" rel="noopener">Dataset Card →</a>
           </div>
         </div>
