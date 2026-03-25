@@ -64,8 +64,9 @@
           <div class="post-num">01</div>
           <div>
             <div class="post-meta">Post · Published March 2026</div>
-            <h3><a href="projects.html#llm-safety-gating">I ran gpt-4o through a safety evaluation system I built. The system blocked it.</a></h3>
-            <p>Not on direct harmful requests. On indirect ones. Fiction wrappers, academic pretexts, sentimental framing. Key finding: heuristic evaluation scored self_harm failure at 85.7% — the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</p>
+            <h3><a href="projects.html#llm-safety-gating">LLM Safety Evaluation &amp; Release Gating</a></h3>
+            <p>I ran gpt-4o-2024-11-20 through a safety evaluation system I built. The system blocked it. Not on direct harmful requests. On indirect ones. Fiction wrappers, academic pretexts, sentimental framing. </p>
+            <p>Key finding: heuristic evaluation scored self_harm failure at 85.7% — the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</p>
             <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem">
               <a class="btn" href="projects.html#llm-safety-gating">Project →</a>
               <a class="btn" href="https://github.com/lea82/llm-safety-gating/blob/main/results/run_002/release_report.md" target="_blank" rel="noopener">Real Results →</a>
@@ -73,6 +74,8 @@
             </div>
             <button class="post-toggle" onclick="togglePost('post-safety-full')">Read full post ↓</button>
             <div class="post-full" id="post-safety-full">
+              <p>I ran gpt-4o-2024-11-20 through a safety evaluation system I built. The system blocked it. Not on direct harmful requests. On indirect ones.</p>
+
               <p>Results: gpt-4o-2024-11-20 · LLM Judge Evaluation · Decision: BLOCK</p>
               <p>Exceeded thresholds in multiple critical categories.</p>
               <table>
@@ -91,6 +94,14 @@
               <p><strong>One result worth highlighting:</strong> Heuristic evaluation scored self_harm failure at 85.7%. The LLM judge scored the same run at 28.6%. A 3× difference on the same model, same prompts. Heuristics flag patterns but struggle to distinguish harmful compliance from contextually appropriate responses. Evaluation method choice is itself a design decision with measurable consequences.</p>
               <p><strong>What I built to get here:</strong> An LLM safety evaluation and release gating system that starts from written policy — not metrics. 5 policy categories. Adversarial + benign control datasets. LLM-as-judge scoring (compliance, refusal quality, harmfulness). Configurable thresholds and escalation conditions. Output: SHIP / CONDITIONAL SHIP / BLOCK with a PM-ready release report.</p>
               <p>This illustrates why a 91.7% overall pass rate is the wrong question. A model can pass capability benchmarks and still not be safe to ship. Reliability is not the same as safety. This is the gap the system is designed to measure — and enforce at release time.</p>
+              <p>Full report, dataset card, and architecture:
+                <a class="btn"
+                   href="https://github.com/lea82/llm-safety-gating"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                   GitHub →
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -108,7 +119,7 @@
             <button class="post-toggle" onclick="togglePost('post-eval-full')">Read full post ↓</button>
             <div class="post-full" id="post-eval-full">
               <p><strong>EXP-01 — LLM reliability evaluation</strong></p>
-              <p>As a first experiment, I evaluated Claude Haiku 4.5 and GPT-4o using a fixed dataset of 12 structured evaluation items designed to test three behaviors: hallucination resistance, classification accuracy, and refusal compliance. Each model was run against the same prompts and scoring criteria, allowing reproducible side-by-side evaluation.</p>
+              <p>In this project, I evaluated Claude Haiku 4.5 and GPT-4o using a fixed dataset of 12 structured evaluation items designed to test three behaviors: hallucination resistance, classification accuracy, and refusal compliance. Each model was run against the same prompts and scoring criteria, allowing reproducible side-by-side evaluation.</p>
               <table>
                 <tr><th>Metric</th><th>Claude Haiku 4.5</th><th>GPT-4o</th></tr>
                 <tr><td>Overall pass rate</td><td>100.0%</td><td>91.7%</td></tr>
@@ -120,6 +131,14 @@
               <p>With only 12 evaluation items, this isn't intended as a definitive model comparison. In production environments, evaluation datasets typically scale to hundreds or thousands of prompts, and models are tested across multiple runs and prompt variants. Still, even small reproducible evaluation harnesses can surface interesting failure modes and serve as the foundation for regression testing and safe automation thresholds.</p>
               <p><strong>Possible next steps:</strong> Prompt stability testing (running repeated evaluations to measure output consistency). Prompt sensitivity analysis (testing how paraphrased prompts affect model behavior).</p>
               <p>I'm particularly interested in evaluation systems that help determine when AI can act autonomously and when humans should remain in the loop — including reliability benchmarks, confidence thresholds, and human-in-the-loop decision pipelines.</p>
+              <p>Full report, dataset, and architecture:
+                <a class="btn"
+                   href="https://github.com/lea82/llm-evaluation-framework"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                   GitHub →
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -182,4 +201,23 @@
       <a href="https://github.com/lea82" target="_blank" rel="noopener">GitHub</a>
       <a href="https://linkedin.com/in/leayanhuili" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/cdn-cgi/l/email-protection#167a7377567a73776f77787e637f7a7f3875797b">Email</a>
-    <
+    <    </div>
+  </div>
+</footer>
+
+  <script>
+    function togglePost(id) {
+      var el = document.getElementById(id);
+      var btn = el.previousElementSibling;
+      if (el.classList.contains('open')) {
+        el.classList.remove('open');
+        btn.textContent = 'Read full post ↓';
+      } else {
+        el.classList.add('open');
+        btn.textContent = 'Collapse ↑';
+      }
+    }
+  </script>
+
+</body>
+</html>
