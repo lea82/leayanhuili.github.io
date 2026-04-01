@@ -60,22 +60,19 @@
     <section style="padding-top: 2.5rem;">
       <div class="post-list">
 
-        <div class="post-item reveal">
+        <div class="post-item reveal" id="post-01">
           <div class="post-num">01</div>
           <div>
-            <div class="post-meta">Post · Published March 2026</div>
+            <div class="post-meta">Essay · Published March 2026</div>
             <h3><a href="projects.html#llm-safety-gating">LLM Safety Evaluation &amp; Release Gating</a></h3>
-            <p>I ran gpt-4o-2024-11-20 through a safety evaluation system I built. The system blocked it. Not on direct harmful requests. On indirect ones. Fiction wrappers, academic pretexts, sentimental framing. </p>
-            <p>Key finding: heuristic evaluation scored self_harm failure at 85.7% — the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</p>
+            <p>Not on direct harmful requests. On indirect ones. Fiction wrappers, academic pretexts, sentimental framing. Key finding: heuristic evaluation scored self_harm failure at 85.7% — the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</p>
             <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem">
               <a class="btn" href="projects.html#llm-safety-gating">Project →</a>
               <a class="btn" href="https://github.com/lea82/llm-safety-gating/blob/main/results/run_002/release_report.md" target="_blank" rel="noopener">Real Results →</a>
               <a class="btn" href="https://github.com/lea82/llm-safety-gating" target="_blank" rel="noopener">GitHub →</a>
             </div>
-            <button class="post-toggle" onclick="togglePost('post-safety-full')">Read full post ↓</button>
+            <button class="post-toggle" onclick="togglePost('post-safety-full')">Read full essay ↓</button>
             <div class="post-full" id="post-safety-full">
-              <p>I ran gpt-4o-2024-11-20 through a safety evaluation system I built. The system blocked it. Not on direct harmful requests. On indirect ones.</p>
-
               <p>Results: gpt-4o-2024-11-20 · LLM Judge Evaluation · Decision: BLOCK</p>
               <p>Exceeded thresholds in multiple critical categories.</p>
               <table>
@@ -94,32 +91,24 @@
               <p><strong>One result worth highlighting:</strong> Heuristic evaluation scored self_harm failure at 85.7%. The LLM judge scored the same run at 28.6%. A 3× difference on the same model, same prompts. Heuristics flag patterns but struggle to distinguish harmful compliance from contextually appropriate responses. Evaluation method choice is itself a design decision with measurable consequences.</p>
               <p><strong>What I built to get here:</strong> An LLM safety evaluation and release gating system that starts from written policy — not metrics. 5 policy categories. Adversarial + benign control datasets. LLM-as-judge scoring (compliance, refusal quality, harmfulness). Configurable thresholds and escalation conditions. Output: SHIP / CONDITIONAL SHIP / BLOCK with a PM-ready release report.</p>
               <p>This illustrates why a 91.7% overall pass rate is the wrong question. A model can pass capability benchmarks and still not be safe to ship. Reliability is not the same as safety. This is the gap the system is designed to measure — and enforce at release time.</p>
-              <p>Full report, dataset card, and architecture:
-                <a class="btn"
-                   href="https://github.com/lea82/llm-safety-gating"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                   GitHub →
-                </a>
-              </p>
             </div>
           </div>
         </div>
 
-        <div class="post-item reveal">
+        <div class="post-item reveal" id="post-02">
           <div class="post-num">02</div>
           <div>
-            <div class="post-meta">Post · Published 2025</div>
+            <div class="post-meta">Essay · Published 2025</div>
             <h3><a href="projects.html#llm-eval">Building a small LLM evaluation harness</a></h3>
             <p>Side-by-side evaluation of Claude Haiku 4.5 and GPT-4o across hallucination resistance, classification accuracy, and refusal compliance. Claude passed all categories at 100%; GPT-4o failed hallucination tests — confidently fabricating a non-existent Einstein lecture at Oxford in 1926.</p>
             <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem">
               <a class="btn" href="projects.html#llm-eval">Project →</a>
               <a class="btn" href="https://github.com/lea82/llm-evaluation-framework" target="_blank" rel="noopener">GitHub →</a>
             </div>
-            <button class="post-toggle" onclick="togglePost('post-eval-full')">Read full post ↓</button>
+            <button class="post-toggle" onclick="togglePost('post-eval-full')">Read full essay ↓</button>
             <div class="post-full" id="post-eval-full">
               <p><strong>EXP-01 — LLM reliability evaluation</strong></p>
-              <p>In this project, I evaluated Claude Haiku 4.5 and GPT-4o using a fixed dataset of 12 structured evaluation items designed to test three behaviors: hallucination resistance, classification accuracy, and refusal compliance. Each model was run against the same prompts and scoring criteria, allowing reproducible side-by-side evaluation.</p>
+              <p>As a first experiment, I evaluated Claude Haiku 4.5 and GPT-4o using a fixed dataset of 12 structured evaluation items designed to test three behaviors: hallucination resistance, classification accuracy, and refusal compliance. Each model was run against the same prompts and scoring criteria, allowing reproducible side-by-side evaluation.</p>
               <table>
                 <tr><th>Metric</th><th>Claude Haiku 4.5</th><th>GPT-4o</th></tr>
                 <tr><td>Overall pass rate</td><td>100.0%</td><td>91.7%</td></tr>
@@ -131,87 +120,127 @@
               <p>With only 12 evaluation items, this isn't intended as a definitive model comparison. In production environments, evaluation datasets typically scale to hundreds or thousands of prompts, and models are tested across multiple runs and prompt variants. Still, even small reproducible evaluation harnesses can surface interesting failure modes and serve as the foundation for regression testing and safe automation thresholds.</p>
               <p><strong>Possible next steps:</strong> Prompt stability testing (running repeated evaluations to measure output consistency). Prompt sensitivity analysis (testing how paraphrased prompts affect model behavior).</p>
               <p>I'm particularly interested in evaluation systems that help determine when AI can act autonomously and when humans should remain in the loop — including reliability benchmarks, confidence thresholds, and human-in-the-loop decision pipelines.</p>
-              <p>Full report, dataset, and architecture:
-                <a class="btn"
-                   href="https://github.com/lea82/llm-evaluation-framework"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                   GitHub →
-                </a>
-              </p>
             </div>
           </div>
         </div>
 
-        <div class="post-item reveal">
+        <div class="post-item reveal" id="post-03">
           <div class="post-num">03</div>
           <div>
             <div class="post-meta">Essay · Published 2026</div>
-            <h3><a href="#">Why AI Evaluation Is the Hardest Problem in AI Deployment</a></h3>
+            <h3><a href="#">Why AI Evaluation Is Harder Than Most Teams Think</a></h3>
             <p>On the structural reasons evaluation resists standardization — the ground truth problem, distribution shift, and why vibes-based evaluation persists even in sophisticated organizations. Includes a concrete illustration from real gpt-4o evaluation data.</p>
             <button class="post-toggle" onclick="togglePost('post-essay3-full')">Read full essay ↓</button>
             <div class="post-full" id="post-essay3-full">
- 
+
               <p>Every team that ships AI features eventually runs into the same wall. They've built something that works in demos, passes internal testing, and looks good on the metrics they've defined. Then it ships, and it fails in ways nobody anticipated. Not because the engineering was bad. Because the evaluation was insufficient.</p>
- 
+
               <p>This isn't a fixable problem. It's a structural one. And understanding why it's structural is the first step toward building evaluation systems that actually work.</p>
- 
+
               <p><strong>The ground truth problem</strong></p>
- 
+
               <p>Evaluation requires a definition of correct. For classification tasks — sentiment, intent detection, ticket routing — that definition is tractable. You can label a dataset, measure accuracy, and know what you're measuring.</p>
- 
+
               <p>Safety evaluation breaks this immediately. What does a correct refusal look like? A model that responds to a self-harm prompt with "I can't help with that" has technically refused. But if that response discourages someone in crisis from seeking help, it has failed in a way that matters far more than the binary pass/fail. Correctness here is not a label — it's a judgment that requires context, empathy, and an understanding of what the response actually does in the world.</p>
- 
+
               <p>This is why safety evaluation cannot be reduced to pattern matching. The patterns aren't the point. The consequences are. And consequences require judgment, not just detection.</p>
- 
+
               <p><strong>Distribution shift and the staleness problem</strong></p>
- 
+
               <p>Evaluation datasets go stale. A dataset designed to test model behavior in 2024 may not capture the adversarial techniques that emerge in 2025. Jailbreak methods evolve. Users find new framings. The world changes in ways that make yesterday's safe response unsafe today.</p>
- 
+
               <p>This creates a treadmill problem: the evaluation infrastructure that gave you confidence at launch may be actively misleading you six months later, because the distribution of real inputs has shifted away from what you measured. You're evaluating for the last threat, not the current one.</p>
- 
+
               <p>The only answer is to treat evaluation datasets as living artifacts — versioned, maintained, regularly extended with newly observed failure modes — not as fixed artifacts you produce once and archive.</p>
- 
+
               <p><strong>The evaluator problem — a concrete example</strong></p>
- 
+
               <p>Here is something I measured directly while building a safety evaluation system: running the same 62 prompts against the same model (gpt-4o-2024-11-20), heuristic evaluation scored the self_harm failure rate at 85.7%. The LLM judge scored it at 28.6%. A 3× difference. Same model. Same prompts. Same evaluation criteria on paper.</p>
- 
+
               <p>The divergence came from a fundamental limitation of heuristic evaluation: it detects patterns but cannot assess context. A heuristic that flags "detailed discussion of self-harm methods" will correctly flag a harmful response — but it will also flag a crisis counselor education answer that explains de-escalation techniques in clinical detail. Both responses contain the same keywords. Only one is a safety failure.</p>
- 
+
               <p>The LLM judge, given the category, expected behavior, severity, and policy context, could distinguish between them. The heuristic could not. This means that evaluation method choice is not a technical detail — it is a design decision with measurable consequences for what you conclude about your model's safety.</p>
- 
+
               <p><strong>Why vibes-based evaluation persists</strong></p>
- 
+
               <p>Given all of this, it might seem surprising that many organizations — including sophisticated ones — still rely heavily on manual spot-checking and intuition. This is not laziness or ignorance. It reflects a genuine difficulty.</p>
- 
+
               <p>Rigorous evaluation is expensive. Building ground-truth datasets takes time. Running LLM judge evaluations costs money. Maintaining adversarial datasets requires ongoing effort. And the returns are probabilistic — you're reducing the chance of a failure, not eliminating it.</p>
- 
+
               <p>Vibes-based evaluation, by contrast, is fast and cheap. And most of the time, it catches the obvious failures. The problem is that it systematically misses the non-obvious ones — the cases where the model fails in ways that only surface under adversarial conditions, edge cases, or at scale.</p>
- 
+
               <p>The organizations that get this right have made a deliberate choice to invest in evaluation infrastructure as a first-class engineering concern, not an afterthought. They treat evaluation as the thing that makes deployment trustworthy, not the thing you do to satisfy a checklist before launch.</p>
- 
+
               <p><strong>What good evaluation infrastructure actually requires</strong></p>
- 
+
               <p>Policy first, then metrics. The most common mistake is building an evaluation system before defining what you're evaluating for. Metrics without policy are just numbers. You need to know what failure means — in writing, reviewed by humans, versioned — before you can measure it.</p>
- 
+
               <p>Thresholds that are negotiated, not arbitrary. Every threshold encodes a risk tolerance decision. Zero tolerance on self_harm failure is a policy choice. A 5% acceptable failure rate on illicit_behavior is a different policy choice. Those decisions belong to humans, documented and auditable, not buried in code.</p>
- 
+
               <p>Evaluation of the evaluator. The 3× divergence between heuristic and LLM judge modes is not an anomaly — it is an expected consequence of using different evaluation methods. Good evaluation infrastructure validates its own outputs, compares modes, and is explicit about the limitations of each.</p>
- 
+
               <p>Safety and helpfulness evaluated jointly. A model that refuses everything passes every safety threshold. That's not a safe model — it's a useless one. Over-refusal is a failure mode with real consequences, and it needs to be measured with the same rigor as harmful compliance.</p>
- 
+
               <p>These aren't new ideas. They're hard to execute on, which is why they're rare. But they're the difference between evaluation that gives you genuine confidence and evaluation that gives you the appearance of confidence — which, in a safety-critical system, may be worse than no evaluation at all.</p>
- 
+
             </div>
           </div>
         </div>
 
-        <div class="post-item reveal">
+        <div class="post-item reveal" id="post-04">
           <div class="post-num">04</div>
           <div>
-            <div class="post-meta">Essay · Forthcoming</div>
+            <div class="post-meta">Essay · Published 2026</div>
             <h3><a href="#">Designing Safe Automation Thresholds</a></h3>
-            <p>A framework for reasoning about automation thresholds — combining confidence scores, task stakes, reversibility, and error cost into a principled decision about when AI should act, pause, or escalate.</p>
+            <p>A framework for reasoning about automation thresholds — combining confidence scores, task stakes, reversibility, and error cost into a principled decision about when AI should act, pause, or escalate. Grounded in production experience with large-scale AI governance systems.</p>
+            <button class="post-toggle" onclick="togglePost('post-essay4-full')">Read full essay ↓</button>
+            <div class="post-full" id="post-essay4-full">
+
+              <p>Every team deploying AI into a real workflow eventually faces the same question: when should the system act on its own, and when should it stop and ask a human? Most teams answer this question badly — either by being so conservative the automation adds no value, or by being so permissive that failures erode trust until the system gets shut down entirely.</p>
+
+              <p>The problem is that most teams treat this as a binary: automate or don't. The better frame is a spectrum with three positions — act, pause, escalate — and the design question is where to draw the boundaries between them.</p>
+
+              <p><strong>The four variables that govern the threshold</strong></p>
+
+              <p>A safe automation threshold is a function of four things. Get all four right and you can set thresholds that are both principled and auditable. Miss any one of them and you'll be calibrating by feel, which means you'll recalibrate after failures rather than before them.</p>
+
+              <p><strong>Confidence score</strong> — how certain is the model about this output? Confidence is necessary but not sufficient. A model can be highly confident and wrong — particularly in distribution shift, where the model has drifted outside its training regime and has no signal that it has done so. Confidence scores are most useful as a lower bound (below X, always escalate) rather than a sufficient condition (above X, always act).</p>
+
+              <p><strong>Task stakes</strong> — what is the cost of a wrong action? Stakes vary enormously across tasks in the same system. A content classification error that miscategorizes a post costs a re-queue. A financial transaction error costs real money and potentially regulatory exposure. A medical record annotation error costs someone's health. Stakes should be explicitly defined per task category, not inferred from confidence alone. High-stakes tasks need higher confidence thresholds, more human review, and tighter escalation bands regardless of measured accuracy.</p>
+
+              <p><strong>Reversibility</strong> — can the action be undone? This is the most underweighted variable in most threshold designs. A reversible action with 80% confidence is far safer than an irreversible action with 95% confidence. The asymmetry is extreme: a wrong reversible action costs time to fix; a wrong irreversible action costs whatever the action affected. Threshold design should treat irreversibility as a multiplier on stakes, not a separate consideration. If an action cannot be undone, treat it as one stakes category higher than it would otherwise be.</p>
+
+              <p><strong>Error cost</strong> — who bears the cost of a mistake, and what form does it take? Error cost is distinct from stakes because it includes downstream consequences beyond the immediate action. A false positive in a fraud detection system costs a legitimate transaction being blocked — the error cost includes customer friction, support ticket volume, and potential churn. A false negative costs a fraudulent transaction passing through — the error cost includes direct financial loss and potential regulatory exposure. Both are errors, both have costs, but the costs are asymmetric. Your threshold should reflect which direction of error is more expensive for your specific context.</p>
+
+              <p><strong>The threshold decision matrix</strong></p>
+
+              <p>With these four variables defined, the threshold decision becomes a matrix rather than a single number. For each task category in your system, define:</p>
+
+              <p>ACT when: confidence ≥ X AND stakes ≤ Y AND action is reversible OR (confidence ≥ Z AND stakes ≤ Y AND error cost is symmetric)</p>
+
+              <p>PAUSE when: confidence is between X and W, OR stakes are high regardless of confidence</p>
+
+              <p>ESCALATE when: confidence &lt; W, OR action is irreversible AND stakes are high, OR error cost is heavily asymmetric in the dangerous direction</p>
+
+              <p>The exact values of X, W, Y, and Z are calibrated from your ground truth data — but the structure of the decision is designed upfront. This matters because it makes the threshold auditable. When a failure occurs, you can trace exactly which condition allowed the action through and adjust that specific condition, rather than having to re-examine the entire system.</p>
+
+              <p><strong>Where this breaks down — and what to do about it</strong></p>
+
+              <p>Three failure modes appear consistently in production threshold systems.</p>
+
+              <p>The first is threshold drift. Thresholds set at launch get eroded over time as teams optimize for throughput. A team sees a pause queue backing up and raises the act threshold to clear the backlog. This feels reasonable in the moment and is catastrophic over time — you're calibrating to operational pressure rather than error rate. Fix: version your thresholds the same way you version your models, require a documented rationale for any threshold change, and run regular audits that compare error rates before and after changes.</p>
+
+              <p>The second is confidence score miscalibration. Most model confidence scores are not well-calibrated — a model that says 90% confidence is wrong far more than 10% of the time, especially on out-of-distribution inputs. If you're setting thresholds based on confidence scores without validating calibration on your actual production data, you are building on a foundation that may not hold. Fix: run calibration analysis on your production data quarterly, build calibration curves that show predicted confidence vs. actual accuracy, and adjust your threshold bands based on observed calibration rather than nominal confidence values.</p>
+
+              <p>The third is missing the escalation path. A system that pauses or escalates is only as good as the human review process on the other end. If escalated items pile up unreviewed, or if reviewers are under-resourced and rubber-stamp everything, the escalation path provides false assurance without actual safety. Fix: treat the human review queue as a first-class system component with its own SLAs, capacity planning, and quality metrics. The automation system and the human review system need to be designed together, not sequentially.</p>
+
+              <p><strong>The principle that ties it together</strong></p>
+
+              <p>Safe automation thresholds are not a technical configuration — they are a policy. They encode decisions about risk tolerance, error asymmetry, and the relative value of throughput versus accuracy. Those decisions belong to humans, should be documented as such, and should be revisited when the underlying conditions change.</p>
+
+              <p>The teams that get this right treat threshold design as a cross-functional conversation between engineering, product, legal, and the people who bear the cost of errors. The teams that get it wrong treat it as a hyperparameter the ML team sets and forgets. The difference shows up in production — not immediately, but reliably, and usually at the worst possible moment.</p>
+
+            </div>
           </div>
         </div>
 
@@ -227,7 +256,7 @@
         <div class="post-item reveal">
           <div class="post-num">06</div>
           <div>
-            <div class="post-meta">Note · Forthcoming</div>
+            <div class="post-meta">Essay · Forthcoming</div>
             <h3><a href="#">What Meta's AI Infrastructure Taught Me About Scale</a></h3>
             <p>What breaks at scale that works fine in prototype — and what you have to get right from the start when building AI governance infrastructure.</p>
           </div>
@@ -236,7 +265,7 @@
         <div class="post-item reveal">
           <div class="post-num">07</div>
           <div>
-            <div class="post-meta">Note · Forthcoming</div>
+            <div class="post-meta">Essay · Forthcoming</div>
             <h3><a href="#">The Right Mental Model for LLM Reliability</a></h3>
             <p>LLMs are unreliable in a different, harder-to-characterize way than traditional software. A mental model that helps teams reason clearly about where LLM failures come from.</p>
           </div>
@@ -265,7 +294,7 @@
       var btn = el.previousElementSibling;
       if (el.classList.contains('open')) {
         el.classList.remove('open');
-        btn.textContent = 'Read full post ↓';
+        btn.textContent = 'Read full essay ↓';
       } else {
         el.classList.add('open');
         btn.textContent = 'Collapse ↑';
