@@ -1,6 +1,6 @@
 # leayanhuili.github.io
 
-Personal site for Lea Yanhui Li — AI Systems Architect.
+Personal site for Lea Yanhui Li — AI Safety, Evaluation & Risk Infrastructure.
 
 **Live:** https://lea82.github.io/leayanhuili.github.io/
 
