@@ -2,7 +2,7 @@
 
 Personal site for Lea Yanhui Li — AI Safety, Evaluation & Risk Infrastructure.
 
-**Live:** https://lea82.github.io/leayanhuili.github.io/
+**Live:** https://lea82.github.io
 
 ---
 
